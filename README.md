@@ -1,4 +1,8 @@
 # starlink-greed
+Raylib Package
+You need to run 'dotnet restore' to add Raylib-cs package to your program
+
+
 Possible classes:
 -Actor (Code for the gems and rocks falling from the top of the screen) -- Nwokolo
 -Gems (Code to get the shape and color of the gems, will inherit the Actor class) -- Andra
@@ -13,4 +17,8 @@ To-Do List
 -- Create a design showing inheritance between classes
 
 
-Note: If you have any idea, please update the to-do list and put your name in from of it.
+Note: 
+-- If you have any idea, please update the to-do list and put your name in from of it.
+-- Make sure to add your class inside the correct folder you think it should belong to (Casting, Services or Directing)
+
+
