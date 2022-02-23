@@ -51,7 +51,7 @@ namespace starlink_greed.Directing
         {
             Actor robot = cast.GetFirstActor("robot");
             Point velocity = keyboardService.GetDirection();
-            robot.SetVelocity(velocity);     
+            robot.SetVelocity(velocity);
         }
 
         /// <summary>

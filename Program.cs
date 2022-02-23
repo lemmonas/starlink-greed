@@ -70,6 +70,7 @@ namespace starlink_greed
                     r = 0;
                     g = 128;
                     b = 0;
+                    FONT_SIZE = 20;
                 }
                 else
                 {
@@ -77,6 +78,7 @@ namespace starlink_greed
                     r = 255;
                     g = 0;
                     b = 0;
+                    FONT_SIZE = 15;
                 }
                 string message = messages[i];
 
@@ -98,8 +100,7 @@ namespace starlink_greed
 
             // start the game
             KeyboardService keyboardService = new KeyboardService(CELL_SIZE);
-            VideoService videoService 
-                = new VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE, false);
+            VideoService videoService = new VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE, false);
             Director director = new Director(keyboardService, videoService);
             director.StartGame(cast);
         }
