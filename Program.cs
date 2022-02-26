@@ -18,12 +18,14 @@ namespace starlink_greed
         private static int MAX_X = 900;
         private static int MAX_Y = 600;
         private static int CELL_SIZE = 15;
-        private static int FONT_SIZE = 15;
+        private static int SCORE = 0;
+        private static int FONT_SIZE = 20;
         private static int COLS = 60;
         private static int ROWS = 40;
         private static string CAPTION = "Greed";
-        private static string DATA_PATH = "Data/messages.txt";
         private static Color WHITE = new Color(255, 255, 255);
+        private static Color GREEN = new Color(0, 128, 0);
+        private static Color RED = new Color(255, 0, 0);
         private static int DEFAULT_ARTIFACTS = 40;
 
 
@@ -38,63 +40,57 @@ namespace starlink_greed
 
             // create the banner
             Actor banner = new Actor();
-            banner.SetText("");
+            banner.SetText("0");
             banner.SetFontSize(FONT_SIZE);
             banner.SetColor(WHITE);
-            banner.SetPosition(new Point(MAX_X / 2, 0));
+            banner.SetPosition(new Point(CELL_SIZE, 0));
             cast.AddActor("banner", banner);
 
             // create the robot
             Actor robot = new Actor();
             robot.SetText("#");
-            robot.SetFontSize(FONT_SIZE);
+            robot.SetFontSize(FONT_SIZE + 5);
+            robot.SetScore(SCORE);
             robot.SetColor(WHITE);
             robot.SetPosition(new Point(MAX_X / 2, 1150));
             cast.AddActor("robot", robot);
 
-            // load the messages
-            List<string> messages = File.ReadAllLines(DATA_PATH).ToList<string>();
+            string gem = "*";
+            string rock = "O";
+            string text = ""; 
 
             // create the artifacts
             Random random = new Random();
             for (int i = 0; i < DEFAULT_ARTIFACTS; i++)
             {
-                string text = "";
-                int r = 0;
-                int g = 0;
-                int b = 0;
-                
                 if (i % 2 == 0)
                 {
-                    text = "*";
-                    r = 0;
-                    g = 128;
-                    b = 0;
-                    FONT_SIZE = 20;
+                    text = gem;
                 }
                 else
                 {
-                    text = "O";
-                    r = 255;
-                    g = 0;
-                    b = 0;
-                    FONT_SIZE = 15;
+                    text = rock;
                 }
-                string message = messages[i];
 
                 int x = random.Next(1, COLS);
                 int y = random.Next(1, ROWS);
                 Point position = new Point(x, y);
                 position = position.Scale(CELL_SIZE);
 
-                Color color = new Color(r, g, b);
-
                 Artifact artifact = new Artifact();
                 artifact.SetText(text);
                 artifact.SetFontSize(FONT_SIZE);
-                artifact.SetColor(color);
+                if (i % 2 == 0)
+                {
+                    artifact.SetColor(GREEN);
+                    artifact.SetScore(50);
+                }
+                else
+                {
+                    artifact.SetColor(RED);
+                    artifact.SetScore(0);
+                }
                 artifact.SetPosition(position);
-                artifact.SetMessage(message);
                 cast.AddActor("artifacts", artifact);
             }
 

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Reflection;
 using starlink_greed.Casting;
 using starlink_greed.Services;
 
@@ -64,17 +66,20 @@ namespace starlink_greed.Directing
             Actor robot = cast.GetFirstActor("robot");
             List<Actor> artifacts = cast.GetActors("artifacts");
 
-            banner.SetText("");
+            banner.SetText("Your Current Score: ");
             int maxX = videoService.GetWidth();
             int maxY = videoService.GetHeight();
             robot.MoveNext(maxX, maxY);
+            Point velocity = new Point(0, 5);
 
             foreach (Actor actor in artifacts)
             {
+                actor.SetVelocity(velocity);
+                actor.MoveNext(maxX, maxY);
                 if (robot.GetPosition().Equals(actor.GetPosition()))
                 {
-                    Artifact artifact = (Artifact) actor;
-                    string message = artifact.GetMessage();
+                    int score = actor.GetScore();
+                    string message = "Current Score: " + score.ToString();
                     banner.SetText(message);
                 }
             } 

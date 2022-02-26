@@ -14,6 +14,7 @@ namespace starlink_greed.Casting
     {
         private string text = "";
         private int fontSize = 15;
+        private int score = 0;
         private Color color = new Color(255, 255, 255); // white
         private Point position = new Point(0, 0);
         private Point velocity = new Point(0, 0);
@@ -68,6 +69,15 @@ namespace starlink_greed.Casting
         public Point GetVelocity()
         {
             return velocity;
+        }
+
+        /// <summary>
+        /// Gets the actor's current score.
+        /// </summary>
+        /// <returns>The score.</returns>
+        public int GetScore()
+        {
+            return score;
         }
 
         /// <summary>
@@ -154,6 +164,11 @@ namespace starlink_greed.Casting
                 throw new ArgumentException("velocity can't be null");
             }
             this.velocity = velocity;
+        }
+
+        public void SetScore(int score)
+        {
+            this.score += score;
         }
 
     }
