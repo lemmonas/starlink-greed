@@ -24,8 +24,7 @@ namespace starlink_greed.Services
         /// Constructs a new instance of KeyboardService using the given cell size.
         /// </summary>
         /// <param name="cellSize">The cell size (in pixels).</param>
-        public VideoService(string caption, int width, int height, int cellSize, int frameRate, 
-                bool debug)
+        public VideoService(string caption, int width, int height, int cellSize, int frameRate, bool debug)
         {
             this.caption = caption;
             this.width = width;
