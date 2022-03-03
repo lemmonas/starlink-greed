@@ -66,6 +66,7 @@ namespace starlink_greed
                 if (i % 2 == 0)
                 {
                     text = gem;
+
                 }
                 else
                 {
@@ -73,9 +74,13 @@ namespace starlink_greed
                 }
 
                 int x = random.Next(1, COLS);
-                int y = random.Next(1, ROWS);
+                // int y = random.Next(1, ROWS);
+                int y = 0;
                 Point position = new Point(x, y);
                 position = position.Scale(CELL_SIZE);
+
+                int yVelocity = random.Next(3, 7);
+                Point velocity = new Point(0, yVelocity);
 
                 Artifact artifact = new Artifact();
                 artifact.SetText(text);
@@ -88,9 +93,10 @@ namespace starlink_greed
                 else
                 {
                     artifact.SetColor(RED);
-                    artifact.SetScore(0);
+                    artifact.SetScore(-10);
                 }
                 artifact.SetPosition(position);
+                artifact.SetVelocity(velocity);
                 cast.AddActor("artifacts", artifact);
             }
 

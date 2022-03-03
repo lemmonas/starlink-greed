@@ -15,6 +15,7 @@ namespace starlink_greed.Directing
     /// </summary>
     public class Director
     {
+        private int totalScore = 0;
         private KeyboardService keyboardService = null;
         private VideoService videoService = null;
 
@@ -66,23 +67,23 @@ namespace starlink_greed.Directing
             Actor robot = cast.GetFirstActor("robot");
             List<Actor> artifacts = cast.GetActors("artifacts");
 
-            banner.SetText("Your Current Score: ");
             int maxX = videoService.GetWidth();
             int maxY = videoService.GetHeight();
             robot.MoveNext(maxX, maxY);
-            Point velocity = new Point(0, 5);
+            // Point velocity = new Point(0, 5);
 
             foreach (Actor actor in artifacts)
             {
-                actor.SetVelocity(velocity);
+                // actor.SetVelocity(velocity);
                 actor.MoveNext(maxX, maxY);
                 if (robot.GetPosition().Equals(actor.GetPosition()))
                 {
                     int score = actor.GetScore();
-                    string message = "Current Score: " + score.ToString();
-                    banner.SetText(message);
+                    totalScore += score;
+                    // banner.SetText(message);
                 }
             } 
+            banner.SetText($"Current Score: {totalScore}");
         }
 
         /// <summary>
